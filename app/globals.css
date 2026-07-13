@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Sora', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --radius: 1rem;
+}
+
+.dark {
+  --background: 248 45% 6%;
+  --foreground: 230 40% 96%;
+
+  --card: 250 35% 10%;
+  --card-foreground: 230 40% 96%;
+
+  --popover: 250 35% 9%;
+  --popover-foreground: 230 40% 96%;
+
+  --primary: 258 100% 68%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 250 25% 16%;
+  --secondary-foreground: 230 30% 88%;
+
+  --muted: 250 20% 16%;
+  --muted-foreground: 230 15% 62%;
+
+  --accent: 258 90% 20%;
+  --accent-foreground: 258 100% 88%;
+
+  --destructive: 355 85% 62%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 250 25% 20%;
+  --input: 250 25% 20%;
+  --ring: 258 100% 68%;
+}
+
+:root:not(.dark) {
+  --background: 250 45% 97%;
+  --foreground: 250 30% 12%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 250 30% 12%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 250 30% 12%;
+
+  --primary: 258 90% 58%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 250 30% 93%;
+  --secondary-foreground: 250 30% 20%;
+
+  --muted: 250 25% 93%;
+  --muted-foreground: 250 15% 42%;
+
+  --accent: 258 80% 92%;
+  --accent-foreground: 258 60% 30%;
+
+  --destructive: 355 80% 52%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 250 25% 88%;
+  --input: 250 25% 88%;
+  --ring: 258 90% 58%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-body);
+  background-image: theme('backgroundImage.grid-glow');
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: hsl(var(--primary) / 0.35);
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary) / 0.5); }
+
+/* Plotly background transparency so charts sit on the glass cards */
+.js-plotly-plot .plotly .main-svg {
+  background: transparent !important;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 999;
+  background: hsl(var(--primary));
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 0 0 8px 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

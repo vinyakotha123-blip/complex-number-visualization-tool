@@ -1,0 +1,50 @@
+{
+  "name": "cnvt-next",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Complex Number Visualization Tool — a Desmos-style dashboard for exploring complex numbers.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "1.1.2",
+    "@radix-ui/react-label": "2.1.0",
+    "@radix-ui/react-select": "2.1.2",
+    "@radix-ui/react-slot": "1.1.0",
+    "@radix-ui/react-switch": "1.1.1",
+    "@radix-ui/react-tabs": "1.1.1",
+    "@radix-ui/react-toast": "1.2.2",
+    "buffer": "^6.0.3",
+    "class-variance-authority": "0.7.0",
+    "clsx": "2.1.1",
+    "framer-motion": "^12.42.2",
+    "jspdf": "2.5.2",
+    "lucide-react": "0.454.0",
+    "mathjs": "13.2.0",
+    "mongodb-memory-server": "10.1.0",
+    "mongoose": "8.7.3",
+    "next": "^15.5.3",
+    "plotly.js": "2.35.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-plotly.js": "2.6.0",
+    "tailwind-merge": "2.5.4",
+    "typescript": "5.6.3",
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "22.7.9",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/react-plotly.js": "2.6.3",
+    "autoprefixer": "10.4.20",
+    "eslint": "8.57.1",
+    "eslint-config-next": "15.0.3",
+    "postcss": "8.4.47",
+    "tailwindcss": "3.4.14",
+    "tailwindcss-animate": "1.0.7"
+  }
+}
