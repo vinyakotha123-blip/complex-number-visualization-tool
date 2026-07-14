@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import { Sidebar } from '@/components/layout/sidebar';
 import { Header } from '@/components/layout/header';
 import { ComplexInput } from '@/components/complex/complex-input';
@@ -11,20 +10,8 @@ import { OperationsPanel } from '@/components/complex/operations-panel';
 import { TransformationsPanel } from '@/components/complex/transformations-panel';
 import { MobiusPanel } from '@/components/complex/mobius-panel';
 import { SavedGraphsPanel } from '@/components/complex/saved-graphs-panel';
-import { useComplex } from '@/hooks/use-complex';
-
 
 export default function DashboardPage() {
-  const { setZ } = useComplex();
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const re = parseFloat(params.get('re') ?? '');
-    const im = parseFloat(params.get('im') ?? '');
-    if (Number.isFinite(re) && Number.isFinite(im)) setZ({ re, im });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <div className="flex min-h-screen">
       <div className="hidden lg:block">

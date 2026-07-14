@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Moon, Share2, Download, HelpCircle } from 'lucide-react';
+import { Moon, Share2, Download, HelpCircle, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { useTheme } from '@/hooks/use-theme';
@@ -11,7 +11,7 @@ import { exportChartAsPng, exportChartAsPdf, exportJson } from '@/utils/export';
 
 export function Header() {
   const { resolved, setMode } = useTheme();
-  const { z } = useComplex();
+  const { z, resetToDefault } = useComplex();
   const { toast } = useToast();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -50,6 +50,10 @@ export function Header() {
           <Moon className="h-3.5 w-3.5 text-muted-foreground" />
           <Switch checked={resolved === 'dark'} onCheckedChange={(checked) => setMode(checked ? 'dark' : 'light')} aria-label="Toggle dark theme" />
         </div>
+        <Button variant="ghost" onClick={() => {
+          resetToDefault();
+          toast({ title: 'Reset to default', description: 'Returned to 3 + 4i.' });
+        }}><RotateCcw className="h-4 w-4" />Reset</Button>
         <Button variant="ghost" onClick={handleShare}><Share2 className="h-4 w-4" />Share</Button>
         <div className="relative">
           <Button variant="ghost" onClick={() => setMenuOpen((o) => !o)}><Download className="h-4 w-4" />Export</Button>

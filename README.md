@@ -5,6 +5,7 @@ A premium, Desmos-style dashboard for visualizing and exploring complex numbers,
 ## Features
 
 - Interactive Cartesian complex plane: vector, magnitude circle, projection lines, zoom/reset
+- Shareable deep links that preserve the current complex number in the URL and can be reset instantly
 - Interactive polar plane with animated radius/angle pointer
 - Rectangular, Polar, Exponential and Trig representations, updating instantly
 - Full calculations: real/imaginary parts, magnitude, argument (deg & rad), conjugate, reciprocal
