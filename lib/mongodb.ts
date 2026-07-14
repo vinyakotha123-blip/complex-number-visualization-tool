@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 
 interface MongooseCache {
   conn: typeof mongoose | null;
@@ -14,18 +13,17 @@ declare global {
 const cached: MongooseCache = global._mongooseCache ?? { conn: null, promise: null };
 global._mongooseCache = cached;
 
-let mongoServer: MongoMemoryServer | null = null;
-
 /**
  * Connects to MongoDB using a cached connection to avoid exhausting
  * connections during Next.js hot-reload / serverless invocations.
- * Falls back to an embedded MongoDB instance when no external database is available.
+ * If no MongoDB URI is configured, the routes will return an explicit
+ * configuration error instead of trying to start an embedded server.
  */
 export async function connectToDatabase(): Promise<typeof mongoose> {
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
-    cached.promise = connectWithFallback();
+    cached.promise = connectWithConfiguredUri();
   }
 
   try {
@@ -38,27 +36,15 @@ export async function connectToDatabase(): Promise<typeof mongoose> {
   return cached.conn;
 }
 
-async function connectWithFallback(): Promise<typeof mongoose> {
-  const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/cnvt';
-  const dbName = process.env.MONGODB_DB || 'cnvt';
-
-  try {
-    return await mongoose.connect(uri, {
-      dbName,
-      bufferCommands: false,
-    });
-  } catch (err) {
-    if (!mongoServer) {
-      mongoServer = await MongoMemoryServer.create({
-        instance: { dbName },
-      });
-      process.env.MONGODB_URI = mongoServer.getUri();
-      return await mongoose.connect(process.env.MONGODB_URI, {
-        dbName,
-        bufferCommands: false,
-      });
-    }
-
-    throw err;
+async function connectWithConfiguredUri(): Promise<typeof mongoose> {
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    throw new Error('MONGODB_URI is not configured. Set it in Vercel/your environment to enable saved graph persistence.');
   }
+
+  const dbName = process.env.MONGODB_DB || 'cnvt';
+  return mongoose.connect(uri, {
+    dbName,
+    bufferCommands: false,
+  });
 }

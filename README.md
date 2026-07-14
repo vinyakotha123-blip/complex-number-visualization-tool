@@ -30,7 +30,8 @@ Open http://localhost:3000.
 
 You'll need a MongoDB instance — either a local `mongod`, or a free cluster at
 [MongoDB Atlas](https://www.mongodb.com/atlas). Saved Graphs won't load or save
-until `MONGODB_URI` is set correctly in `.env.local`.
+until `MONGODB_URI` is set correctly in `.env.local` or in your Vercel project
+environment variables.
 
 ## Folder structure
 
